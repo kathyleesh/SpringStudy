@@ -9,7 +9,13 @@ import java.util.Optional;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    /*// Test와 같은 Repository를 사용하기 위해 외부에서 Repository를 생생하여 들고와서 사용한다.
+    private final MemberRepository memberRepository = new MemoryMemberRepository();*/
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 회원가입
