@@ -3,16 +3,20 @@ package hello.practicespring.service;
 import hello.practicespring.domain.Member;
 import hello.practicespring.repository.MemberRepository;
 import hello.practicespring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+//@Service //자동으로 spring bean으로 등록
 public class MemberService {
 
     /*// Test와 같은 Repository를 사용하기 위해 외부에서 Repository를 생생하여 들고와서 사용한다.
     private final MemberRepository memberRepository = new MemoryMemberRepository();*/
     private final MemberRepository memberRepository;
 
+    //@Autowired //자동으로 spring bean으로 등록
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

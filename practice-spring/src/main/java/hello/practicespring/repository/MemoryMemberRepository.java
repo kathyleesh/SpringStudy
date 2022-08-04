@@ -1,9 +1,11 @@
 package hello.practicespring.repository;
 
 import hello.practicespring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+//@Repository //자동으로 spring bean으로 등록
 //implements MemberRepository 추가 후 option + enter 후 implements methods 전체 생성
 public class MemoryMemberRepository implements MemberRepository{
 
