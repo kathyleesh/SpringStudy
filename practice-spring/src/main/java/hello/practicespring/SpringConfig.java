@@ -1,8 +1,8 @@
 package hello.practicespring;
 
 import hello.practicespring.repository.MemberRepository;
-import hello.practicespring.repository.MemoryMemberRepository;
 import hello.practicespring.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,13 +11,48 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
 
-    @Bean
-    public MemberService memberService() {
-        return new MemberService(memberRepository());
+    /* jdbc
+    private DataSource dataSource;
+
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+     */
+
+    /*jpa
+    private EntityManager em;
+
+    public SpringConfig(EntityManager em) {
+        this.em = em;
+    }*/
+
+    private final MemberRepository memberRepository;
+
+    @Autowired
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
-    public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+    public MemberService memberService() {
+        return new MemberService(memberRepository);
     }
+
+    /* before spring data jpa
+    @Bean
+    public MemberService memberService() {
+        return new MemberService(memberRepository());
+    }*/
+
+    /* before spring data jpa
+    @Bean
+    public MemberRepository memberRepository() {
+        //return new MemoryMemberRepository();            //base memory repository
+        //return new JdbcMemberRepository(dataSource);    //use Jdbc
+        //return new JdbcTemplateMemberRepository(dataSource);      //use Jdbc templates
+        //return new JpaMemberRepository(em); //use Jpa
+    }
+    */
 }

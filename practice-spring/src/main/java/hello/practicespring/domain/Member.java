@@ -1,8 +1,15 @@
 package hello.practicespring.domain;
 
+import javax.persistence.*;
+
+@Entity //JPA가 관리하는 entity임을 명시
 public class Member {
 
+    //@Id == Pk, @GeneratedValue(strategy = GenerationType.IDENTITY) == AI
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //@Column(name = "username")
     private String name;
 
     public Long getId() {
