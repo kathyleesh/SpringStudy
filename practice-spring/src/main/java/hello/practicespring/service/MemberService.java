@@ -27,6 +27,7 @@ public class MemberService {
      * 회원가입
      **/
     public Long join(Member member) {
+
         //같은 이름 있는 중복 회원 X
         /*
         //memberRepository.findByName(member.getName()) 작성후 cmd + opt + v 하면 "Optional<Member> result = memberRepository.findByName(member.getName());" 로 생성
